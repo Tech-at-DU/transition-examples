@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+
+/* Sme boilerplate styles */
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  line-height: 1.5;
+}
+
+.container {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+}
+
+.container > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Define some custom properties 
+Looks for these below */
+:root {
+  /* Defines a spring like motion with linear() */
+  /* Look for this name below --linear-spring */
+  --linear-spring: linear(
+    /* Initial stretch forward */
+    0, 0.15, 0.3, 0.45 20%,
+    /* First back-and-forth */
+    0.6, 0.8 35%, 1.1, 0.9 50%, 1.05, 0.95 65%, 1.02, 0.98 80%,
+    /* Final oscillations approaching rest */
+    1.01, 0.99 90%, 1
+  );
+
+  /* Defines a bounce like motion with linear() */
+  /* Look for this name below --linear-bounce */
+  --linear-bounce: linear(
+    /* Start to 1st bounce */
+    0, 0.004, 0.016, 0.035, 0.063 9.1%, 0.141, 0.25, 0.391, 0.563, 0.765, 1,
+    /* 1st to 2nd bounce */
+    0.891, 0.813 45.5%, 0.785, 0.766, 0.754, 0.75, 0.754, 0.766, 0.785, 0.813 63.6%, 0.891, 1 72.7%,
+    /* 2nd to 3rd bounce */
+    0.973, 0.953, 0.941, 0.938, 0.941, 0.953, 0.973, 1,
+    /* 3rd bounce to end */
+    0.988, 0.984, 0.988, 1
+  );
+
+}
+
+/* ******************************** */
+/* *****     Example Code     ***** */
+/* ******************************** */
+
+/* The differences in these first four examples may seem sublte 
+but they are significant and offer a wide range of application */
+
+/* *********************** */
+/*        Example 1        */
+/* *********************** */
+.box-1 {
+  width: 100px;
+  height: 100px;
+  background-color: #f00;
+  /* Sets the time to apply changes to this element */
+  transition: 1000ms;
+  /* s = secs ms = milliseconds */
+  &:hover {
+    /* These changes occur over the transition time set above */
+    /* More control using transform */
+    /* transform: scale(1.25) rotate(12deg); */
+    /* These new properties are easier to use! same as above */
+    rotate: 12deg;
+    scale: 1.25;
+  }
+}
+
+
+/* *********************** */
+/*        Example 2        */
+/* *********************** */
+.box-2 {
+  width: 100px;
+  height: 100px;
+  background-color: #f00;
+  transition: 1000ms;
+  /* Control the easing curve of the motion with a timing function */
+  /* https://developer.mozilla.org/en-US/docs/Web/CSS/transition-timing-function */
+  transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+  &:hover {
+    rotate: 12deg;
+    scale: 1.25;
+  }
+}
+
+
+/* *********************** */
+/*        Example 3        */
+/* *********************** */
+.box-3 {
+  width: 100px;
+  height: 100px;
+  background-color: #f00;
+  transition: 1000ms;
+  /* The linear timing function creates a linear transition between a list of values 
+  Use this to create bounce and spring like motion
+  https://developer.chrome.com/docs/css-ui/css-linear-easing-function */
+  transition-timing-function:var(--linear-bounce);
+  &:hover {
+    rotate: 12deg;
+    scale: 1.25;
+  }
+}
+
+
+/* *********************** */
+/*        Example 4        */
+/* *********************** */
+.box-4 {
+  width: 100px;
+  height: 100px;
+  background-color: #f00;
+  transition: 1000ms;
+  /* Use cubic-bezier function to create motion using a bezier curve. 
+  This function takes four parmaters that determine the sweep of motion.
+  https://developer.mozilla.org/en-US/docs/Web/CSS/easing-function 
+  Use this site to generate bezier curves: https://cubic-bezier.com/ */
+  transition-timing-function: cubic-bezier(0.83,0,0.22,1.0);
+  &:hover {
+    rotate: 12deg;
+    scale: 1.25;
+  }
+}
+
+
+/* *********************** */
+/*        Example 5        */
+/* *********************** */
+.box-5 {
+  width: 100px;
+  height: 100px;
+  font-weight: 900;
+  font-size: 2rem;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f00;
+  transition: 1000ms;
+  /* Changes in color and opacity usually look best with a linear transition! */
+  /* transition-timing-function: cubic-bezier(0.83,0,0.22,1.0); */
+  transition-timing-function: linear;
+
+  &:hover {
+    /* Animate colors */
+    color: red;
+    background-color: black;
+  }
+}
+
+
+/* *********************** */
+/*        Example 6        */
+/* *********************** */
+.box-6 {
+  box-sizing: border-box;
+  border-style: solid;
+  border-width: 0;
+  border-color: white;
+  width: 100px;
+  height: 100px;
+  font-weight: 900;
+  font-size: 2rem;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f00;
+  transition: 1000ms;
+
+  &:hover {
+    /* Animate anything, here I animated the border width! */
+    border-width: 50px;
+    color: black
+  }
+}
+
+
+/* *********************** */
+/*        Example 7        */
+/* *********************** */
+.box-7 {
+  border-color: white;
+  width: 100px;
+  height: 100px;
+  font-weight: 900;
+  font-size: 2rem;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f00;
+  /* Tranistion multiple properties by creating a list.
+  Each item here is listed align-self: 
+  <property> || <duration> || <timing-function> || <delay> [, ...]; */
+  transition: 
+    color 400ms linear 0ms,         /* color transition */
+    border-radius 400ms ease 500ms; /* border-radius transition */
+  
+    &:hover {
+    color: black;
+    border-radius: 50%;      
+  }
+}
+
+
+/* *********************** */
+/*        Example 8        */
+/* *********************** */
+.box-8 {
+  border-color: white;
+  width: 100px;
+  height: 100px;
+  font-weight: 900;
+  font-size: 2rem;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f00;
+  /* This example is the same as the previous but breaks the values 
+  into separate properties. It also calls out the use of delay. Notice 
+  that border-radius lags behind the color change! All values are in 
+  a list, the order matters! */
+  transition-property: color, border-radius;
+  transition-duration: 400ms, 400ms;
+  transition-timing-function: linear, ease-out;
+  transition-delay: 0ms, 500ms;
+
+  &:hover {
+    color: black;
+    border-radius: 50%;      
+  }
+}
+
+
+/* *********************** */
+/*        Example 9        */
+/* *********************** */
+.box-9 {
+  border-color: white;
+  width: 100px;
+  height: 100px;
+  font-weight: 900;
+  font-size: 2rem;
+  color: white;
+  background-color: #f00;
+  /* Transistion the Parent */
+  transition: 400ms linear;
+
+  /* Give the parent element position relative to move the child 
+  using absolute position. This makes the parent the "positioning"
+  context for the relative child. */
+  position: relative;
+  overflow: hidden;
+
+  & > div {
+    /* Child element absolute position */
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    /* Transition the child */
+    transition: 400ms ease-out;
+
+    & > div {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+  /* Hover the parent */
+  &:hover { /* hover the parent... */
+    background-color: black;
+    /* When the PARENT is hovered the CHILD div changes its top */
+    & > div { /* animate the child */
+      top: -100%; 
+    }       
+  }
+}
+
+
+/* *********************** */
+/*        Example 10       */
+/* *********************** */
+.box-10 {
+  width: 100px;
+  height: 100px;
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  font-weight: 900;
+  position: relative;
+  overflow: hidden;
+
+  transition: 200ms linear 200ms;
+
+  /* Create an extra element and animate it */
+  &::before {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-color: red;
+    position: absolute;
+    z-index: -1;
+    left: 100%;
+    transition: 200ms ease-out;
+  }
+    
+  &:hover { /* Hover the parent */
+    color: white;
+    &::before { /* animate the ::before element */
+      left: 0;
+    }
+  }
+}
+
+
+/* *********************** */
+/*        Example 11       */
+/* *********************** */
+.box-11 {
+  width: 100px;
+  height: 100px;
+  border: 1px solid black;
+  position: relative;
+  background-color: white;
+
+  transition: 200ms linear;
+
+  /* Create an extra element and animate it */
+  /* NOTE! the lack of a space between & and :: matters! Adding 
+  a space makes this a descendent! */
+
+  &::before { /* no spaces! */
+    content: "";
+    display: block;
+    width: 70%;
+    height: 15%;
+    background-color: black;
+    position: absolute;
+    left: 15%;
+    top: 30%;
+    transition: 400ms;
+    /* This moves the orginal point to the center, which allows us to rotate around the center */
+    /* https://css-tricks.com/almanac/properties/t/transform-origin/ */
+    transform-origin: center center;
+    transition-timing-function: var(--linear-bounce);
+  }
+
+  /* Create an extra element and animate it */
+  &::after { /* no spaces */
+    content: "";
+    display: block;
+    width: 70%;
+    height: 15%;
+    background-color: black;
+    position: absolute;
+    left: 15%;
+    top: 55%;
+    transition: 400ms;
+    transform-origin: center center;
+    transition-timing-function: var(--linear-bounce);
+  }
+      
+  /* The lack of a space between & and :hover matters here! */
+  &:hover {
+    background-color: black;
+    &::before {
+      rotate: 45deg;
+      top: 42.5%;
+      background-color: white;
+    }
+    &::after {
+      rotate: -45deg;
+      top: 42.5%;
+      background-color: white;
+    }
+  }
+}
+
+
+/* *********************** */
+/*        Example 12       */
+/* *********************** */
+
+/* This example needs three children. ::before and ::after only allow for two!
+So for this example I created three child divs to animate */
+
+.box-12 {
+  width: 100px;
+  height: 100px;
+  border: 1px solid black;
+  position: relative;
+
+  transition: 200ms linear;
+
+  /* Animate the first child */
+  & > :nth-child(1) {
+    content: "";
+    display: block;
+    width: 50%;
+    height: 10%;
+    background-color: black;
+    position: absolute;
+    left: 25%;
+    top: 30%;
+    transition: 200ms;
+    /* Add some spring to this, see the definition above */
+    transition-timing-function: var(--linear-spring);
+    transform-origin: center center;
+  }
+
+  /* Animate the second child */
+  & > :nth-child(2) {
+    content: "";
+    display: block;
+    width: 50%;
+    height: 10%;
+    background-color: black;
+    position: absolute;
+    left: 25%;
+    top: 60%;
+    transition: 200ms ;
+    transition-timing-function: var(--linear-spring);
+    transform-origin: center center;
+  }
+
+  /* Animate the third child */
+  & > :nth-child(3) {
+    content: "";
+    display: block;
+    width: 50%;
+    height: 10%;
+    box-sizing: border-box;
+    background-color: black;
+    position: absolute;
+    left: 25%;
+    top: 45%;
+    transition: 200ms ;
+    transition-timing-function: var(--linear-spring);
+    transform-origin: center center;
+  }
+  
+  &:hover { /* Hover the parent */
+    /* Animate the children */
+    & > :nth-child(1) {
+      rotate: 45deg;
+      top: 45%;
+    }
+    & > :nth-child(2) {
+      rotate: -45deg;
+      top: 45%;
+    }
+
+    & > :nth-child(3) {
+      height: 80%;
+      width: 80%;
+      top: 10%;
+      left: 10%;
+      background-color: transparent;
+      border: 10px solid black;
+      border-radius: 50%;
+    }
+  }
+}
+
+
+/* *********************** */
+/*        Example 13       */
+/* *********************** */
+
+/* This example needs three children. ::before and ::after only allow for two!
+So for this example I created three child divs to animate */
+
+.box-13 {
+  width: 100px;
+  height: 100px;
+  border: 1px solid black;
+  position: relative;
+
+  transition: 200ms linear;
+
+  /* Animte the first child */
+  & > :nth-child(1) {
+    content: "";
+    display: block;
+    width: 50%;
+    height: 10%;
+    background-color: black;
+    position: absolute;
+    left: 25%;
+    top: 30%;
+    transition: 200ms;
+    transform-origin: center center;
+  }
+
+  /* Animate the second child */
+  & > :nth-child(2) {
+    content: "";
+    display: block;
+    width: 50%;
+    height: 10%;
+    background-color: black;
+    position: absolute;
+    left: 25%;
+    top: 60%;
+    transition: 200ms ;
+    transform-origin: center center;
+  }
+
+  /* Animate the third child */
+  & > :nth-child(3) {
+    content: "";
+    display: block;
+    width: 50%;
+    height: 10%;
+    box-sizing: border-box;
+    background-color: black;
+    position: absolute;
+    left: 25%;
+    top: 45%;
+    transition: 200ms ;
+    transform-origin: center center;
+  }
+  
+  &:hover { /* hover the parent */
+    /* Animate the children */
+    & > :nth-child(1) {
+      width: 40%;
+      rotate: 45deg;
+      top: 56%;
+      left: 18%;
+    }
+    & > :nth-child(2) {
+      width: 40%;
+      rotate: -45deg;
+      top: 34%;
+      left: 18%;
+    }
+  }
+}
+
+
+/* *********************** */
+/*        Example 14       */
+/* *********************** */
+
+/* This example uses a checkbox and a label to create an iOS style switch */
+/* For this example its important that the input is nested inside of the label */
+
+.box-14 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+
+  /* Hide the input! The label will do all of the work here */
+  & input {
+    display: none;
+  }
+
+  /* Style the label as the background */
+  & label {
+    width: 80px;
+    height: 50px;
+    background-color: rgb(225, 225, 225);
+    border-radius: 50px;
+
+    /* Create circle that will slide */
+    &::before {
+      content: "";
+      display: block;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: white;
+      position: absolute;
+      left: 5px;
+      top: 5px;
+      transition: 200ms;
+    }
+
+    /* We need a selector that will target the parent element */
+    /* https://developer.mozilla.org/en-US/docs/Web/CSS/:has */
+    &:has(> input:checked) {
+      background-color: yellowgreen;
+    }
+
+    &:has(> input:checked)::before {
+      left: 35px;
+    }
+  }
+}
+
+
+/* *********************** */
+/*        Example 15       */
+/* *********************** */
+
+/* That last example was fun, lets do another using the same idea that looks different. */
+
+.box-15 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+
+  /* Hide the input! */
+  & input {
+    display: none;
+  }
+
+  /* Style the label as the background */
+  & label {
+    padding-left: 55px;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+
+    /* The check mark */
+    &::after {
+      content: "";
+      box-sizing: border-box;
+      display: none;
+      width: 30px;
+      height: 20px;
+      position: absolute;
+      border-left: 10px solid;
+      border-bottom: 10px solid;
+      left: 5px;
+      top: 6px;
+      transition: 400ms;
+      transform-origin: center center;
+      rotate: -45deg;
+      scale: 0 0;
+    }
+
+    &::before {
+      box-sizing: border-box;
+      content: "";
+      display: block;
+      width: 40px;
+      height: 40px;
+      position: absolute;
+      border: 1px solid;
+      background-color: rgb(230, 230, 230);
+      left:0;
+      top: 0px;
+      transition: 200ms;
+    }
+
+    /* We need a selector that will target the parent element. 
+    Here we look for the parent then find the child input, and look 
+    at the :checked pseudo class. */
+    /* https://developer.mozilla.org/en-US/docs/Web/CSS/:has */
+    &:has(> input:checked)::before {
+      background-color: yellowgreen;
+    }
+
+    &:has(> input:checked)::after {
+      display: block;
+      /* For some reason this isn't working? */
+      scale: 1 1;
+    }
+  }
+}
+
+
+/* *********************** */
+/*        Example 16       */
+/* *********************** */
+.box-16 {
+  width: 100px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  font-weight: 100;
+  color: white;
+  /* Can't animate gradients (yet) */
+  background-image: linear-gradient(45deg, red, blue);
+  /* The ::before element will be positioned absolute. make this its context */
+  position: relative;
+  transition: 400ms;
+
+  &::after {
+    /* Create a before element */
+    content: "";
+    display: block;
+    /* Position absolute */
+    position: absolute;
+    /* Shorthand for left, top, right, and bottom properties */
+    inset: 0;
+    background-image: linear-gradient(-45deg, green, gold);
+    opacity: 0;
+    transition: 600ms;
+  }
+
+  &:hover {
+    /* color: black; */
+    &::after {
+      opacity: 1;
+    }
+  }
+}
+
+
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div>
+      Example-1
+      <div class="box-1"></div>
+    </div>
+
+    <div>
+      Example-2
+      <div class="box-2"></div>
+    </div>
+
+    <div>
+      Example-3
+      <div class="box-3"></div>
+    </div>
+
+    <div>
+      Example-4
+      <div class="box-4"></div>
+    </div>
+
+    <div>
+      Example-5
+      <div class="box-5">Hello</div>
+    </div>
+
+    <div>
+      Example-6
+      <div class="box-6">
+        Hello
+      </div>
+    </div>
+
+    <div>
+      Example-7
+      <div class="box-7">Hello</div>
+    </div>
+
+    <div>
+      Example-8
+      <div class="box-8">World</div>
+    </div>
+
+    <div>
+      Example-9
+      <div class="box-9">
+        <div>
+          <div>Hello</div>
+          <div>World</div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      Example-10
+      <div class="box-10">
+        Foo
+      </div>
+    </div>
+
+    <div>
+      Example-11
+      <div class="box-11"></div>
+    </div>
+
+    <div>
+      Example-12
+      <div class="box-12">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+
+    <div>
+      Example-13
+      <div class="box-13">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+
+    <div>
+      Example-14
+      <div class="box-14">
+        <label>
+          <input type="checkbox">
+        </label>
+      </div>
+    </div>
+
+    <div>
+      Example-15
+      <div class="box-15">
+        <label>
+          <input type="checkbox">
+          True?
+        </label>
+      </div>
+    </div>
+
+    <div>
+      Example-16
+      <div class="box-16">
+        <span>Bar</span>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

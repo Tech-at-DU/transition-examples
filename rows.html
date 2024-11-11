@@ -1,0 +1,235 @@
+<style>
+
+  * {
+    margin: 0;
+    padding: 0;
+  }
+
+  body, html {
+    height: 100%;
+  }
+
+  body {
+    margin: 0;
+    background:#111;
+    color: #111;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: 300;
+    line-height: 1.5;
+    font-size: 16px;;
+  }
+
+  h1, small, p {
+    margin-bottom: 0.5rem;
+  }
+
+  small {
+    font-weight: normal;
+  }
+
+  h1 {
+    letter-spacing: 0.25rem;
+    line-height: 1;
+  }
+
+  /* ************************** */
+  /* Each row uses this class.  */
+  .row {
+    /* When closed rows are 6rem tall */
+    height: 6rem;
+    min-height: 6rem;
+    /* Set the duration for tranistions */
+    transition: 300ms;
+    padding: 2rem;
+    /* Hide content that won't be visible */
+    overflow: hidden;
+  }
+
+  /* This class is applied with JS to open a row */
+  .bigify {
+    min-height: 100vh;
+  }
+  /* ************************** */
+
+  .image-row {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+  }
+</style>
+
+<div class="container">
+  <div class="row">
+    <h1>Color 1</h1>
+    <small>This is an intersting color.</small>
+    <p>Some content text that will help make this look like a real app. It's important to use real text.</p>
+    <div class="image-row">
+      
+    </div>
+  </div>
+  <div class="row">
+    <h1>Color 2</h1>
+    <small>This is an intersting color.</small>
+    <p>Some content text that will help make this look like a real app. It's important to use real text.</p>
+    <div class="image-row">
+      
+    </div>
+  </div>
+  <div class="row">
+    <h1>Color 3</h1>
+    <small>This is an intersting color.</small>
+    <p>Some content text that will help make this look like a real app. It's important to use real text.</p>
+    <div class="image-row">
+      
+    </div>
+  </div>
+  <div class="row">
+    <h1>Color 4</h1>
+    <small>This is an intersting color.</small>
+    <p>Some content text that will help make this look like a real app. It's important to use real text.</p>
+    <div class="image-row">
+      
+    </div>
+  </div>
+  <div class="row">
+    <h1>Color 5</h1>
+    <small>This is an intersting color.</small>
+    <p>Some content text that will help make this look like a real app. It's important to use real text.</p>
+    <div class="image-row">
+      
+    </div>
+  </div>
+  <div class="row">
+    <h1>Color 6</h1>
+    <small>This is an intersting color.</small>
+    <p>Some content text that will help make this look like a real app. It's important to use real text.</p>
+    <div class="image-row">
+      
+    </div>
+  </div>
+  <div class="row">
+    <h1>Color 7</h1>
+    <small>This is an intersting color.</small>
+    <p>Some content text that will help make this look like a real app. It's important to use real text.</p>
+    <div class="image-row">
+      
+    </div>
+  </div>
+  <div class="row">
+    <h1>Color 8</h1>
+    <small>This is an intersting color.</small>
+    <p>Some content text that will help make this look like a real app. It's important to use real text.</p>
+    <div class="image-row">
+      
+    </div>
+  </div>
+  <div class="row">
+    <h1>Color 9</h1>
+    <small>This is an intersting color.</small>
+    <p>Some content text that will help make this look like a real app. It's important to use real text.</p>
+    <div class="image-row">
+      
+    </div>
+  </div>
+  <div class="row">
+    <h1>Color 10</h1>
+    <small>This is an intersting color.</small>
+    <p>Some content text that will help make this look like a real app. It's important to use real text.</p>
+    <div class="image-row">
+      
+    </div>
+  </div>
+  <div class="row">
+    <h1>Color 11</h1>
+    <small>This is an intersting color.</small>
+    <p>Some content text that will help make this look like a real app. It's important to use real text.</p>
+    <div class="image-row">
+      
+    </div>
+  </div>
+  <div class="row">
+    <h1>Color 12</h1>
+    <small>This is an intersting color.</small>
+    <p>Some content text that will help make this look like a real app. It's important to use real text.</p>
+    <div class="image-row">
+      
+    </div>
+  </div>
+</div>
+
+<script>
+  
+  // Start by getting a list of all elements with the class row
+  // Get a nodelist and convert it to an array! 
+  const rows = Array.from(document.querySelectorAll('.row'))
+
+  // Loop over each row and set the background color. 
+  // We use JS here so we can calculate the colors based on the index
+  rows.forEach((row, i) => {
+    const hue = 360 / rows.length * i
+    // Compare hsl vs oklch colors! Notice the blue is much 
+    // darker with a hsl colors. Oklch tries to keep the values even
+    // Maintaining better contrast
+
+    // row.style.backgroundColor = `hsla(${hue}, 100%, 60%, 1.0)`
+    row.style.backgroundColor = `oklch(0.85 0.3 ${hue})`
+
+    // https://evilmartians.com/chronicles/oklch-in-css-why-quit-rgb-hsl#how-oklch-works
+    // oklch(L C H) L = lightness, C = Chroma/saturation, H = Hue
+    // The value ranges are strange
+    // L - 0 black to 1 white
+    // C - 0 gray (no color) to 0.37
+    // H - 0 to 360 degrees
+    // Add an alpha value like this: oklch(L C H / A)
+    // A - 0 to 1 transparency
+  })
+
+  // Handle clicks on anything with class row
+  // TODO: This might be better handled with clicks on headings
+
+  // The logic here is 
+  // Listen for clicks
+  // When a click occurs look for the closests parent row
+  // If that row is already big 
+  //   remove the bigify class from all rows (smallify function) 
+  //   then exit
+  // If the row is not big
+  //   remove the bigify class from all rows (smallify function)
+  //   add the bigify class to the current row
+
+  document.querySelector('body').addEventListener('click', (e) => {
+    // Find the closest parent .row
+    const row = e.target.closest('.row') 
+
+    // Its not a row lets ignore this
+    if (row === null) {
+      return // exit
+    }
+    // If this row is big, shrink all rows
+    if (row.matches('.bigify')) {
+      smallify()
+      return // exit
+    }
+
+    // Shrink all rows
+    smallify()
+
+    // Then, expand the current row
+    row.classList.add('bigify')
+    // Then scroll this row to the top
+
+    setTimeout(() => {
+      row.scrollIntoView({ 
+        behavior: 'smooth' 
+      });
+    }, 300)
+  })
+
+  // shrinks all rows 
+  function smallify() {
+    rows.forEach((row) => {
+      row.classList.remove('bigify')
+    })
+  }
+
+</script>

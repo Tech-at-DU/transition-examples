@@ -1,0 +1,443 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Mitchell Hudson</title>
+    <style>
+
+      /* -------------------------------------------- */
+      /* Colors */
+
+      :root {
+        /* Color section a */
+        --color-a-1: rgb(232, 208, 129);
+        --color-a-2: rgb(211, 181, 80);
+        --color-a-3: rgb(159, 133, 50);
+        /* Color section b */
+        --color-b-1: rgb(242, 143, 21);
+        --color-b-2: rgb(206, 118, 11);
+        --color-b-3: rgb(145, 80, 1);
+        /* Color section c */
+        --color-c-1: rgb(144, 189, 144);
+        --color-c-2: rgb(102, 154, 102);
+        --color-c-3: rgb(84, 132, 84);
+        /* Color section d */
+        --color-d-1: cadetblue;
+        --color-d-2: rgb(70, 134, 136);
+        --color-d-3: rgb(46, 97, 99);
+
+        /* Other colors */
+        --color-dark: rgb(27, 30, 31);
+        --color-light: #fff;
+      }
+
+      /* -------------------------------------------- */
+      /* Set up the window */
+
+      * {
+        box-sizing: border-box;
+      }
+      body, html {
+        width: 100%;
+        height: 100%;
+      }
+
+      body {
+        overflow: hidden;
+        margin: 0;
+        line-height: 1.5;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      }
+
+      h1, h2, h3, h4, h5, h6 {
+        margin: 0;
+      }
+
+      /* --------------------------------------------- */
+      /* Container */
+
+      .container {
+        position: absolute;
+        width: calc(200% - 4em);
+        height: calc(200% - 4em);
+        display: grid;
+        grid-template-columns: repeat(2, calc(50% - 4em));
+        grid-template-rows: repeat(2, calc(50% - 4em));
+        transition: 400ms ease-in-out;
+        left: 0;
+        top: 0;
+      }
+
+
+      /* ------------------------------------------- */
+      /* Nav */
+
+      .nav {
+        color: var(--color-light);
+        border: 7px solid;
+        width: 4rem;
+        height: 4rem;
+        line-height: 3.1rem;
+        text-align: center;
+        border-radius: 50%;
+        font-size: 2rem;
+        font-weight: 900;
+        display: block;
+        position: absolute;
+      }
+
+      /* Use :not() to apply styles when this element is not active */
+      .nav:hover:not(.active) {
+        border-color: var(--color-light);
+        color: var(--color-light) !important;
+      }
+
+      /* Use :not() to apply styles with this element is not active */
+      .nav:hover:not(.active) {
+        border-color: var(--color-dark);
+        color: var(--color-dark) !important;
+      }
+
+      a {
+        text-decoration: none;
+      }
+
+      #a a.nav.active {
+        color: var(--color-a-3);
+      }
+
+      #b a.nav.active {
+        color: var(--color-b-3);
+      }
+
+      #c a.nav.active {
+        color: var(--color-c-3);
+      }
+
+      #d a.nav.active {
+        color: var(--color-d-3);
+      }
+
+      /* ----------------------------------- */
+      /* Container */
+
+      .container > div {
+        /* padding: 1em; */
+        display: flex;
+      }
+
+      .container > div:nth-child(2)  {
+        justify-content: flex-start;
+        align-items: flex-end;
+      }
+
+      .container > div:nth-child(3) {
+        justify-content: flex-end;
+        align-items: flex-start;
+      }
+
+      .container > div:nth-child(4) {
+        background-color: var(--color-d-1);
+        justify-content: flex-start;
+        align-items: flex-start;
+      }
+
+      /* -------------------------------------- */
+      /* Content */
+      .content {
+        margin: 3rem;
+        padding: 1rem;
+        max-width: 560px;
+        height: calc(100% - 4em);
+        overflow: scroll;
+        position: relative;
+      }
+
+      .content-header {
+        opacity: 0.5;
+      }
+
+      .content-box {
+        position: relative;
+      }
+
+      /* ---------------------------------------------- */
+      /* A */
+
+      #a {
+        background-color: var(--color-a-1);
+        border-right: 6rem solid var(--color-a-2);
+        border-bottom: 6rem solid var(--color-a-2);
+        justify-content: flex-end;
+        align-items: flex-end;
+        flex-direction: column;
+        justify-content: flex-end;
+      }
+
+      #a > .nav {
+        position: absolute;
+        right: -5rem;
+        bottom: -5rem;
+      }
+
+      #a > .content {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+      }
+
+      #a > .content > h1 {
+        color: var(--color-dark);
+        font-size: 4rem;
+        /* letter-spacing: 0.5em; */
+        line-height: 4rem;
+      }
+
+      .a-image-row {
+        display: flex;
+        width: 100%;
+        height: 180px;
+      }
+
+      .a-image-row > img {
+        width: 33.33%;
+        height: auto;
+        opacity: 0.5;
+      }
+
+      /* --------------------------------------------- */
+      /* B */
+
+      #b {
+        background-color: var(--color-b-1);
+        border-left: 6rem solid var(--color-b-2);
+        border-bottom: 6rem solid var(--color-b-2);
+      }
+
+      #b > .nav {
+        position: absolute;
+        left: -5rem;
+        bottom: -5rem;
+      }
+
+      #b > .content > div {
+        display: flex;
+        align-items: flex-end;
+      }
+
+      #b > .content {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+      }
+
+      .b-image-header {
+        border: 7px solid var(--color-light);
+        width: 300px;
+        height: auto;
+        position: absolute;
+        right: 4rem;
+        top: 4rem;
+        border-radius: 50%;
+        opacity: 0.25;
+      }
+
+
+      /* ---------------------------------------------- */
+      /* C */
+
+      #c {
+        background-color: var(--color-c-1);
+        border-top: 6rem solid var(--color-c-2);
+        border-right: 6rem solid var(--color-c-2);
+      }
+
+      #c > .nav {
+        position: absolute;
+        right: -5rem;
+        top: -5rem;
+      }
+
+      #c > .content {
+        margin-top: 0;
+        padding-top: 2rem;
+      }
+
+      /* ---------------------------------------------- */
+      /* D */
+
+      #d {
+        border-top: 6rem solid var(--color-d-2);
+        border-left: 6rem solid var(--color-d-2);
+      }
+
+      #d > .nav {
+        position: absolute;
+        left: -5rem;
+        top: -5rem;
+      }
+
+      #d > .content {
+        margin-top: 0;
+        padding-top: 2rem;
+      }
+
+      .image-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 120px);
+        grid-auto-rows: 120px;
+      }
+
+      .image-grid > img {
+        width: 120px;
+        height: auto;
+        opacity: 0.5;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+
+      <div id="a" class="content-box">
+        <a class="nav active" href="#a" data-id="a">?</a>
+        <div class="content">
+          <h1 class="content-header">Mitchell Hudson</h1>
+          <p>Knows a little CSS and JavaScript, and likes to put what he 
+            knows together in creative ways.</p>
+          <p class="a-image-row">
+            
+          </p>
+        </div>
+      </div>
+
+      <div id="b" class="content-box">
+        <a class="nav" href="#b" data-id="b">&</a>
+        <div class="content">
+          <div>
+              <h1 class="content-header">Skills</h1>
+              
+          </div>
+          <p>Has worked on large and small projects for a variety of 
+            clients. Has made protypes and product mock ups in a 
+            range of software tools including: 
+          </p>
+          <ul>
+            <li>HTML/CSS/JS</li>
+            <li>Swift/Xcode</li>
+            <li>Flash Actionscript</li>
+            <li>Lua/Corona SDK</li>
+          </ul>
+        </div>
+      </div>
+
+      <div id="c" class="content-box">
+        <a class="nav" href="#c" data-id="c">@</a>
+        <div class="content">
+          <h1 class="content-header">Experience</h1>
+          <p>Spent many years teaching college courses mostly
+            related to the artistic side software development.
+          </p>
+
+          <p>Yourself off its pleasant ecstatic now law. Ye their mirth seems of songs. Prospect out bed contempt separate. Her inquietude our shy yet sentiments collecting. Cottage fat beloved himself arrived old. Grave widow hours among him ﻿no you led. Power had these met least nor young. Yet match drift wrong his our. 
+          </p>
+
+          <p>Old education him departure any arranging one prevailed. Their end whole might began her. Behaved the comfort another fifteen eat. Partiality had his themselves ask pianoforte increasing discovered. So mr delay at since place whole above miles. He to observe conduct at detract because. Way ham unwilling not breakfast furniture explained perpetual. Or mr surrounded conviction so astonished literature. Songs to an blush woman be sorry young. We certain as removal attempt. 
+          </p>
+
+          <p>Do in laughter securing smallest sensible no mr hastened. As perhaps proceed in in brandon of limited unknown greatly. Distrusts fulfilled happiness unwilling as explained of difficult. No landlord of peculiar ladyship attended if contempt ecstatic. Loud wish made on is am as hard. Court so avoid in plate hence. Of received mr breeding concerns peculiar securing landlord. Spot to many it four bred soon well to. Or am promotion in no departure abilities. Whatever landlord yourself at by pleasure of children be. 
+          </p>
+
+          <p>Boy favourable day can introduced sentiments entreaties. Noisier carried of in warrant because. So mr plate seems cause chief widen first. Two differed husbands met screened his. Bed was form wife out ask draw. Wholly coming at we no enable. Offending sir delivered questions now new met. Acceptance she interested new boisterous day discretion celebrated. 
+          </p>
+
+          <p>Bringing unlocked me an striking ye perceive. Mr by wound hours oh happy. Me in resolution pianoforte continuing we. Most my no spot felt by no. He he in forfeited furniture sweetness he arranging. Me tedious so to behaved written account ferrars moments. Too objection for elsewhere her preferred allowance her. Marianne shutters mr steepest to me. Up mr ignorant produced distance although is sociable blessing. Ham whom call all lain like. 
+          </p>
+
+          <p>Sociable on as carriage my position weddings raillery consider. Peculiar trifling absolute and wandered vicinity property yet. The and collecting motionless difficulty son. His hearing staying ten colonel met. Sex drew six easy four dear cold deny. Moderate children at of outweigh it. Unsatiable it considered invitation he travelling insensible. Consulted admitting oh mr up as described acuteness propriety moonlight. 
+          </p>
+
+          <p>dmiration stimulated cultivated reasonable be projection possession of. Real no near room ye bred sake if some. Is arranging furnished knowledge agreeable so. Fanny as smile up small. It vulgar chatty simple months turned oh at change of. Astonished set expression solicitude way admiration. 
+            related to the artistic side software development.
+          </p>
+        </div>
+      </div>
+
+      <div id="d" class="content-box">
+        <a class="nav" href="#d" data-id="d">!</a>
+        <div class="content">
+            <h1 class="content-header">Current Projects</h1>
+            <p>Besides this prortfolio you can also take a look at my
+              current projects on GitHub
+            </p>
+            <ul>
+              <li>Portfolio</li>
+              <li>Tetris</li>
+              <li>SF Public Open Spaces</li>
+              <li>Data Visualizations</li>
+            </ul>
+            <div class="image-grid">
+                
+            </div>
+          </div>
+      </div>
+    </div>
+
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/072ce5392e.js" crossorigin="anonymous"></script>
+
+    <script>
+      // The logic here follows this: 
+
+      // Add listener to the codument listening for clicks
+      // IF the element clicked does not match .nav
+      //   exit 
+      // FOREACH button remove the active class 
+      // GET the id of the current button from data-id
+      // add the active class to the current button
+      // SWITCH id 
+      //   a: SET left and top 0
+      //   b: SET top 0 left 100% - 12rem
+      //   c: SET left 0 top 100% - 12rem
+      //   d: SET left and top to 100% - 12rem
+
+      const container = document.querySelector('.container')
+      const buttons = document.querySelectorAll('.nav')
+
+      document.addEventListener('click', (e) => {
+        e.preventDefault()
+
+        if (!e.target.matches('.nav')) {
+          return
+        } 
+
+        buttons.forEach(icon => {
+          icon.classList.remove('active')
+        })
+
+        const id = e.target.dataset.id
+        e.target.classList.add('active')
+
+        switch(id) {
+          case 'a':
+            container.style.left = 0
+            container.style.top = 0
+            break
+          
+          case 'b':
+            container.style.left = 'calc(-100% + 12rem)'
+            container.style.top = 0
+            break
+          
+          case 'c':
+            container.style.left = 0
+            container.style.top = 'calc(-100% + 12em)'
+            break
+          
+          case 'd':
+            container.style.left = 'calc(-100% + 12em)'
+            container.style.top = 'calc(-100% + 12em)'
+            break
+          }
+        })
+    </script>
+  </body>
+</html>

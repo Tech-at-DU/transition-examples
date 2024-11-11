@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    }
+
+    /* ********* */
+    /* Example 1 */
+    /* ********* */
+
+    /* Default state for box */
+    .box-1 {
+      width: 10px;
+      height: 10px;
+      background-color: black;
+      border: 1px solid;
+      margin: 1rem;
+      /* This tranistion animates property changes */
+      transition: 1000ms;
+    }
+
+    /* We will add and remove this class to create some motion. */
+    .box-1.active {
+      width: 300px;
+      height: 300px;
+      background-color: white;
+      border: 10px solid;
+    }
+
+
+
+    /* ********* */
+    /* Example 2 */
+    /* ********* */
+
+    /* Default style for box-2 */
+    .box-2 {
+      height: 2rem;
+      border: 1px solid;
+      overflow: hidden;
+      transition: 400ms;
+    }
+
+    .box-2 h1 {
+      margin: 0;
+      font-size: 2rem;
+      cursor: pointer;
+    }
+
+    /* Active appearance for box-2 */
+    .box-2.active {
+      height: 6rem;
+    }
+
+  </style>
+</head>
+<body>
+  
+  <button id="button-1">Click me!</button>
+  <div class="box-1"></div>
+
+  <div class="box-2">
+    <h1>OPEN</h1>
+    <p>Foo bar</p>
+  </div>
+
+  <script>
+
+    // Add an event listener for click
+    document.querySelector('#button-1').addEventListener('click', e => {
+      // find div.box 
+      document.querySelector('.box-1')
+        // toggle (add or remove) the active class
+        .classList.toggle('active')
+
+        //  We could add the styles under .active as inline styles
+        // also, which might be prefereable in some situations. 
+    })
+
+    // Add an event listener for click
+    document.querySelector('h1').addEventListener('click', e => {
+      // e.target is the element that was clicked
+      // get the closest matching parent 
+      const box = e.target.closest('.box-2')
+      
+      if (box.matches('.active')) {
+        // If box has .active remove it 
+        e.target.textContent = 'OPEN'
+        box.classList.remove('active')
+      } else {
+        // box doesn't have .active add it
+        e.target.textContent = 'CLOSE'
+        box.classList.add('active')
+      }
+    })
+
+  </script>
+</body>
+</html>
