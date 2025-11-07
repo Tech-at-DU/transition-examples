@@ -3,13 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Example 1 - Transitions</title>
   <style>
 
-/* Sme boilerplate styles */
+/* Some boilerplate styles */
 body {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   line-height: 1.5;
+}
+
+h2 {
+  margin: 0;
 }
 
 .container {
@@ -27,7 +31,7 @@ body {
 }
 
 /* Define some custom properties 
-Looks for these below */
+Looks for these in the code below: --linear-spring, and --linear-bounce */
 :root {
   /* Defines a spring like motion with linear() */
   /* Look for this name below --linear-spring */
@@ -59,12 +63,14 @@ Looks for these below */
 /* *****     Example Code     ***** */
 /* ******************************** */
 
-/* The differences in these first four examples may seem sublte 
-but they are significant and offer a wide range of application */
+/* The differences in these first four examples may seem subtle 
+but they are significant and offer a wide range of expression. */
 
 /* *********************** */
 /*        Example 1        */
 /* *********************** */
+
+
 .box-1 {
   width: 100px;
   height: 100px;
@@ -154,12 +160,16 @@ but they are significant and offer a wide range of application */
   align-items: center;
   background-color: #f00;
   transition: 1000ms;
-  /* Changes in color and opacity usually look best with a linear transition! */
-  /* transition-timing-function: cubic-bezier(0.83,0,0.22,1.0); */
+  
   transition-timing-function: linear;
+  /* Changes in color and opacity usually 
+  look best with a linear transition! 
+  TODO: test this by uncommenting the line below. */
+  /* transition-timing-function: cubic-bezier(0.83,0,0.22,1.0); */
+ 
 
   &:hover {
-    /* Animate colors */
+    /* Transition colors */
     color: red;
     background-color: black;
   }
@@ -186,7 +196,8 @@ but they are significant and offer a wide range of application */
   transition: 1000ms;
 
   &:hover {
-    /* Animate anything, here I animated the border width! */
+    /* Animate anything, here I animated the border width! 
+    TODO: Try a smaller value here, like 10px */
     border-width: 50px;
     color: black
   }
@@ -207,17 +218,17 @@ but they are significant and offer a wide range of application */
   justify-content: center;
   align-items: center;
   background-color: #f00;
+
   /* Tranistion multiple properties by creating a list.
   Each item here is listed align-self: 
   <property> || <duration> || <timing-function> || <delay> [, ...]; */
   transition: 
     color 400ms linear 0ms,         /* color transition */
     border-radius 400ms ease 500ms; /* border-radius transition */
-  
-    &:hover {
-    color: black;
-    border-radius: 50%;      
-  }
+      &:hover {
+      color: black;
+      border-radius: 50%;      
+    }
 }
 
 
@@ -235,6 +246,7 @@ but they are significant and offer a wide range of application */
   justify-content: center;
   align-items: center;
   background-color: #f00;
+
   /* This example is the same as the previous but breaks the values 
   into separate properties. It also calls out the use of delay. Notice 
   that border-radius lags behind the color change! All values are in 
@@ -580,6 +592,7 @@ So for this example I created three child divs to animate */
 
   /* Hide the input! The label will do all of the work here */
   & input {
+    /* TODO: Try commenting this line */
     display: none;
   }
 
@@ -704,7 +717,8 @@ So for this example I created three child divs to animate */
   color: white;
   /* Can't animate gradients (yet) */
   background-image: linear-gradient(45deg, red, blue);
-  /* The ::before element will be positioned absolute. make this its context */
+  /* The ::before element will be positioned absolute. 
+  make this its context */
   position: relative;
   transition: 400ms;
 
@@ -722,7 +736,7 @@ So for this example I created three child divs to animate */
   }
 
   &:hover {
-    /* color: black; */
+    color: black;
     &::after {
       opacity: 1;
     }
@@ -735,26 +749,31 @@ So for this example I created three child divs to animate */
 </head>
 <body>
   <div class="container">
+   <h1>Timing Functions</h1>
+    <div></div> <div></div> <div></div>
     <div>
-      Example-1
+      <p>div.box-1 </p>
       <div class="box-1"></div>
     </div>
 
     <div>
-      Example-2
+      <p>div.box-2 </p>
       <div class="box-2"></div>
     </div>
 
     <div>
-      Example-3
+      <p>div.box-3</p>
       <div class="box-3"></div>
     </div>
 
     <div>
-      Example-4
+      <p>div.box-4</p>
       <div class="box-4"></div>
     </div>
 
+
+    <h1>Tranistion properties.</h1>
+    <div></div> <div></div> <div></div>
     <div>
       Example-5
       <div class="box-5">Hello</div>
@@ -776,6 +795,9 @@ So for this example I created three child divs to animate */
       Example-8
       <div class="box-8">World</div>
     </div>
+
+    <h1>Tranistion children.</h1>
+    <div></div> <div></div> <div></div>
 
     <div>
       Example-9
@@ -807,6 +829,9 @@ So for this example I created three child divs to animate */
         <div></div>
       </div>
     </div>
+
+    <h1>More ideas.</h1>
+    <div></div> <div></div> <div></div>
 
     <div>
       Example-13

@@ -2,10 +2,26 @@
  
 These examples provide ideas for using CSS transition.
 
-The examples cover two main ideas:
+Download this repo, and look at the html files there. Read code and comments. Start with example-1.html
+
+
+
+Outline
+
+- What is transition?
+  - Interpolating values
+  - Transition properties
+    - Timing functions 
 - Using transistion with :hover
+  - Gotchas
+- Targetting nested elements
+- Targeting the parent element
+- Using pseudo elements
 - Using transition with JS by adding an removing a class that triggers the transition. 
-- Using transition timing functions
+
+
+
+
 
 Bonus topic: oklch colors! 
 

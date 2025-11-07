@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div class="book">
+    <!-- Each page is a label. Its important that the 
+     check box is nested inside the label, this allows 
+     clicking the label to activate the checkbox. -->
+    <label>
+      <input type="checkbox">
+    </label>
+
+    <label>
+      <input type="checkbox">
+    </label>
+
+    <label>
+      <input type="checkbox">
+    </label>
+  </div>
+
+  <style>
+    /* Container for Book pages */
+    .book {
+      width: 300px;
+      height: 400px;
+      border: 1px solid;
+      position: relative;
+      perspective: 400px;
+      transform-style: preserve-3d;
+    }
+
+    /* Every page is a label */
+    label {
+      display: block;
+      position: absolute;
+      width: 85px;
+      height: 110px;
+      background-color: antiquewhite;
+      border: 1px solid;
+      transform-origin: 0 0 0;
+      transition: 1400ms;
+      /* Position the pages inside the container */
+      left: 50%;
+      top: calc(50% - 55px);
+    }
+
+    /* Using something:has(something-else) as a selector 
+    allows to select a parent element! */
+    label:has(input:checked) {
+      /* If a checkbox is selected rotate it */
+      transform: rotateY(-180deg);
+    }
+
+    /* Style each page */
+    label:nth-child(1) {
+      /* Each page has been translated on the Z axis */
+      translate: 0 0 1px;
+      background-color: orange;
+    }
+
+    label:nth-child(2) {
+      /* Translate this on the z so it is above page 1 */
+      translate: 0 0 2px;
+      background-color: dodgerblue;
+    }
+
+    label:nth-child(3) {
+      /* Translate this page on the z axis so it is above page 2 */
+      translate: 0 0 3px;
+      background-color: red;
+    }
+
+    /* When pages are flipped the stacking order, z axis, also 
+    flips! With the book closed page 3 is on top. When the book
+    is opened, page 3 will be below page 2! */
+    label:nth-child(1):has(input:checked) {
+      translate: 0 0 3px;
+    }
+
+    label:nth-child(2):has(input:checked) {
+      translate: 0 0 2px;
+    }
+
+    label:nth-child(3):has(input:checked) {
+      translate: 0 0 1px;
+    }
+  </style>
+</body>
+</html>
