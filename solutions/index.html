@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Solutions</title>
+  <style>
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    :root {
+      --linear-spring: linear(
+        0, 0.15, 0.3, 0.45 20%,
+        0.6, 0.8 35%, 1.1, 0.9 50%, 1.05, 0.95 65%, 1.02, 0.98 80%,
+        1.01, 0.99 90%, 1
+      );
+
+      --linear-bounce: linear(
+        0, 0.004, 0.016, 0.035, 0.063 9.1%, 0.141, 0.25, 0.391, 0.563, 0.765, 1,
+        0.891, 0.813 45.5%, 0.785, 0.766, 0.754, 0.75, 0.754, 0.766, 0.785, 0.813 63.6%, 0.891, 1 72.7%,
+        0.973, 0.953, 0.941, 0.938, 0.941, 0.953, 0.973, 1,
+        0.988, 0.984, 0.988, 1
+      );
+
+      --bezier-back: cubic-bezier(0.247, 0.478, 0.594, 1.434);
+    }
+
+    .badge-button {
+      display: inline-block;
+      border: none;
+      padding: 1rem;
+      border-radius: 0.5rem;
+      background-color: dodgerblue;
+      color: white;
+      font-size: 1rem;
+      position: relative;
+      transition: 400ms;
+
+      &:hover {
+        background-color: color-mix(in srgb, dodgerblue 50%, black 50%);
+      }
+
+      &:active {
+        background-color: tomato;
+      }
+
+      &::before {
+        content: "$.99";
+        position: absolute;
+        right: 0.5rem;
+        top: 0.5rem;
+        background-color: tomato;
+        padding: 0.5rem;
+        height: 1rem;
+        line-height: 1rem;
+        border-radius: 1rem;
+        translate: 50% -50%;
+        transition-duration: 400ms;
+        transition-timing-function: (0.6, -0.28, 0.735, 0.045);
+        scale: 0%;
+        rotate: 0;
+        box-shadow: -2px 2px 3px rgba(0, 0, 0, 0.445);
+      }
+
+    &:hover::before {
+      scale: 100%;
+      rotate: 15deg;
+    }
+
+    &:active::before {
+      scale: 0;
+    }
+  }
+
+    .burger-button {
+      display: inline-block;
+      border: 3px solid;
+      padding: 2rem;
+      border-radius: 0.5rem;
+      background-color: white;
+      color: black;
+      font-size: 1rem;
+      position: relative;
+      overflow: hidden;
+
+      &>div {
+        position: absolute;
+        width: 80%;
+        height: 25%;
+        left: 10%;
+        top: 19%;
+        transition-duration: 400ms;
+        transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      }
+      &>div:nth-child(1) {
+        background-color: burlywood;
+        border-radius: 1rem 1rem 2px 2px;
+      }
+
+      &>div:nth-child(2) {
+        background-color: rgb(111, 55, 14);
+        border-radius: 50px;
+        height: 14%;
+        top: 49%;
+      }
+
+      &>div:nth-child(3) {
+        background-color: burlywood;
+        border-radius: 0 0 0.5rem 0.5rem;
+        top: 68%;
+        height: 15%;
+      }
+
+      &:hover > div:nth-child(1) {
+        top: -25%;
+      }
+
+      &:hover > div:nth-child(2) {
+        height: 80%;
+        border-radius: 50%;
+        top: 10%;
+      }
+
+      &:hover > div:nth-child(3) {
+        top: 120%;
+      }
+    }
+
+    label {
+      display: inline-block;
+      position: relative;
+      padding: 0 1rem 0 3rem;
+      /* border: 1px solid; */
+      overflow: hidden;
+      line-height: 2rem;
+      color: gray;
+
+      &>input {
+        display: none;
+      }
+     
+      &::before {
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        content: "";
+        width: calc(2rem - 6px);
+        height: calc(2rem - 6px);
+        border: 3px solid;
+        border-radius: 0.25rem;
+        transition: 400ms;
+      }
+
+      &::after {
+        display: block;
+        position: absolute;
+        left: calc(0.5rem + 2.5px);
+        top:calc(3rem + 2px);
+        content: "";
+        width: calc(1.0rem - 8px);
+        height: calc(1.5rem - 8px);
+        rotate: 45deg;
+        border-bottom: 3px solid;
+        border-right: 3px solid;
+        border-radius: 0 0 0.25rem 0;
+        transition: 400ms;
+        overflow: hidden;
+        transition-timing-function:var(--bezier-back);
+      }
+
+      &:has(input:checked)::before {
+        background-color: limegreen;
+      }
+
+      &:has(input:checked)::after {
+        top:calc(0.25rem + 2px);
+      }
+
+      &:has(input:checked) {
+        color: black;
+      }
+    }
+
+  </style>
+</head>
+<body>
+  <main>
+
+    <p>
+      <strong>Challenge</strong>: Button shows a badge when hovered. Notice the change when clicked. 
+      <button class="badge-button">Order</button>
+    </p>
+
+    </p>
+      <strong>Challenge</strong>: Hamburger button. <strong>Bonus challenge</strong>: 
+      Add lettuce and tomato... 
+      <button class="burger-button">
+        <div></div>
+        <div></div>
+        <div></div>
+      </button>
+
+      <p>
+      <strong>Challenge</strong>: make a fancy check box. Notice the easing function. 
+      <label>
+        <input type="checkbox"></button>
+        Onions
+      </label>
+    </p>
+
+    </main>
+  </main>
+  
+</body>
+</html>
