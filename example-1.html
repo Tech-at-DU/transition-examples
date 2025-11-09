@@ -34,29 +34,38 @@ h2 {
 Looks for these in the code below: --linear-spring, and --linear-bounce */
 :root {
   /* Defines a spring like motion with linear() */
-  /* Look for this name below --linear-spring */
+  /* TODO: Look for this name below --linear-spring. 
+  
+  Here linear() interpolates 
+  between two values over a percent of the animation duration. */
   --linear-spring: linear(
     /* Initial stretch forward */
     0, 0.15, 0.3, 0.45 20%,
     /* First back-and-forth */
-    0.6, 0.8 35%, 1.1, 0.9 50%, 1.05, 0.95 65%, 1.02, 0.98 80%,
+    0.6, 0.8 35%, 
+    1.1, 0.9 50%, 
+    1.05, 0.95 65%, 
+    1.02, 0.98 80%,
     /* Final oscillations approaching rest */
     1.01, 0.99 90%, 1
   );
 
   /* Defines a bounce like motion with linear() */
-  /* Look for this name below --linear-bounce */
+  /* Look for this name below --linear-bounce. Here we have a 
+  series of cubic bezier functions. */
   --linear-bounce: linear(
     /* Start to 1st bounce */
-    0, 0.004, 0.016, 0.035, 0.063 9.1%, 0.141, 0.25, 0.391, 0.563, 0.765, 1,
+    0, 0.004, 0.016, 0.035, 0.063 9.1%, 
+    0.141, 0.25, 0.391, 0.563, 0.765, 1,
     /* 1st to 2nd bounce */
-    0.891, 0.813 45.5%, 0.785, 0.766, 0.754, 0.75, 0.754, 0.766, 0.785, 0.813 63.6%, 0.891, 1 72.7%,
+    0.891, 0.813 45.5%, 
+    0.785, 0.766, 0.754, 0.75, 0.754, 0.766, 0.785, 0.813 63.6%, 
+    0.891, 1 72.7%,
     /* 2nd to 3rd bounce */
     0.973, 0.953, 0.941, 0.938, 0.941, 0.953, 0.973, 1,
     /* 3rd bounce to end */
     0.988, 0.984, 0.988, 1
   );
-
 }
 
 /* ******************************** */
@@ -75,16 +84,27 @@ but they are significant and offer a wide range of expression. */
   width: 100px;
   height: 100px;
   background-color: #f00;
-  /* Sets the time to apply changes to this element */
+  /* Sets the time to apply changes to this element. TODO: change the 
+  time, make it larger then smaller, test the effect in the browser. 
+  (s = secs ms = milliseconds) */
   transition: 1000ms;
-  /* s = secs ms = milliseconds */
+  /* All of the properties of this element will be "transitioned". 
+  TODO: Add some more properties here to be transitioned, for example, 
+  border-radius, border-width, border-color, opacity, width, height 
+  background-color, etc. */
+
+
   &:hover {
     /* These changes occur over the transition time set above */
     /* More control using transform */
     /* transform: scale(1.25) rotate(12deg); */
-    /* These new properties are easier to use! same as above */
+    /* These new properties are easier to use! same as above.
+    TODO: change the values here and test the effect in the browser. */
     rotate: 12deg;
     scale: 1.25;
+
+    /* TODO: Set new value for the extra properties you added above. 
+    Test your work and watch them change. */
   }
 }
 
@@ -98,11 +118,27 @@ but they are significant and offer a wide range of expression. */
   background-color: #f00;
   transition: 1000ms;
   /* Control the easing curve of the motion with a timing function */
-  /* https://developer.mozilla.org/en-US/docs/Web/CSS/transition-timing-function */
+  /* https://developer.mozilla.org/en-US/docs/Web/CSS/transition-timing-function 
+  TODO: try the default easing keywords here: ease, ease-in, ease-out, 
+  ease-in-out. Look for the effect in the browser.
+  TODO: Follow this link: https://matthewlein.com/tools/ceaser 
+  Create a custom timing function and try it here. */
   transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+
+  /* TODO: Add some new properties here. Some will be transitioned, 
+  others will not. */
+
+  /* TODO: Which properties will be transitioned by listing them here. */
+  transition-property: all;
+
+  
   &:hover {
     rotate: 12deg;
     scale: 1.25;
+
+    /* TODO: Assign new vlaues to all the properties you added above.
+    Test your work. Only the properties that are listed in 
+    transition-properties should change smoothly. */
   }
 }
 
@@ -117,7 +153,9 @@ but they are significant and offer a wide range of expression. */
   transition: 1000ms;
   /* The linear timing function creates a linear transition between a list of values 
   Use this to create bounce and spring like motion
-  https://developer.chrome.com/docs/css-ui/css-linear-easing-function */
+  https://developer.chrome.com/docs/css-ui/css-linear-easing-function 
+  TODO: Use the link above to explore linear() timing-function. 
+  TODO: try --linear-spring here. */
   transition-timing-function:var(--linear-bounce);
   &:hover {
     rotate: 12deg;
@@ -137,7 +175,9 @@ but they are significant and offer a wide range of expression. */
   /* Use cubic-bezier function to create motion using a bezier curve. 
   This function takes four parmaters that determine the sweep of motion.
   https://developer.mozilla.org/en-US/docs/Web/CSS/easing-function 
-  Use this site to generate bezier curves: https://cubic-bezier.com/ */
+  Use this site to generate bezier curves: https://cubic-bezier.com/ 
+  TODO: Use the link above and create your own timing function. Test
+  it here. */
   transition-timing-function: cubic-bezier(0.83,0,0.22,1.0);
   &:hover {
     rotate: 12deg;
@@ -161,12 +201,10 @@ but they are significant and offer a wide range of expression. */
   background-color: #f00;
   transition: 1000ms;
   
+  /* Changes in color and opacity usually look best, not always, 
+  with a linear transition! 
+  TODO: Try other timing functions here and compare. */
   transition-timing-function: linear;
-  /* Changes in color and opacity usually 
-  look best with a linear transition! 
-  TODO: test this by uncommenting the line below. */
-  /* transition-timing-function: cubic-bezier(0.83,0,0.22,1.0); */
- 
 
   &:hover {
     /* Transition colors */
@@ -219,16 +257,25 @@ but they are significant and offer a wide range of expression. */
   align-items: center;
   background-color: #f00;
 
-  /* Tranistion multiple properties by creating a list.
+  /* Transition multiple properties by creating a list.
   Each item here is listed align-self: 
   <property> || <duration> || <timing-function> || <delay> [, ...]; */
   transition: 
     color 400ms linear 0ms,         /* color transition */
     border-radius 400ms ease 500ms; /* border-radius transition */
-      &:hover {
-      color: black;
-      border-radius: 50%;      
-    }
+    /* TODO: Notice the commas above. There are two transitions here! 
+    Edit each of these, and test the results in the browser. Try 
+    changing the delay time (the second time value!) */
+
+    /* TODO: Add another property to animate. */
+    /* TODO: in "transition" above, list the new property, and 
+    parameters that will govern it's transition. */
+
+  &:hover {
+    color: black;
+    border-radius: 50%; 
+    /* TODO: Change the value of the property you added here. */
+  }
 }
 
 
@@ -250,7 +297,7 @@ but they are significant and offer a wide range of expression. */
   /* This example is the same as the previous but breaks the values 
   into separate properties. It also calls out the use of delay. Notice 
   that border-radius lags behind the color change! All values are in 
-  a list, the order matters! */
+  a list (comma separated), the order matters! */
   transition-property: color, border-radius;
   transition-duration: 400ms, 400ms;
   transition-timing-function: linear, ease-out;
@@ -277,9 +324,6 @@ but they are significant and offer a wide range of expression. */
   /* Transistion the Parent */
   transition: 400ms linear;
 
-  /* Give the parent element position relative to move the child 
-  using absolute position. This makes the parent the "positioning"
-  context for the relative child. */
   position: relative;
   overflow: hidden;
 
@@ -327,6 +371,8 @@ but they are significant and offer a wide range of expression. */
   position: relative;
   overflow: hidden;
 
+  /* TODO: Identify how delay is used here. Change the delay 
+  value and observe the results. */
   transition: 200ms linear 200ms;
 
   /* Create an extra element and animate it */
@@ -363,9 +409,8 @@ but they are significant and offer a wide range of expression. */
 
   transition: 200ms linear;
 
-  /* Create an extra element and animate it */
-  /* NOTE! the lack of a space between & and :: matters! Adding 
-  a space makes this a descendent! */
+  /* Here the extra elements are created with the pseudo elements
+  ::before and ::after. */
 
   &::before { /* no spaces! */
     content: "";
@@ -376,15 +421,16 @@ but they are significant and offer a wide range of expression. */
     position: absolute;
     left: 15%;
     top: 30%;
-    transition: 400ms;
+    transition: 600ms;
     /* This moves the orginal point to the center, which allows us to rotate around the center */
     /* https://css-tricks.com/almanac/properties/t/transform-origin/ */
     transform-origin: center center;
+    /* TODO: Improve the timing function here to get a better effect. */
     transition-timing-function: var(--linear-bounce);
   }
 
   /* Create an extra element and animate it */
-  &::after { /* no spaces */
+  &::after { /* no spaces! */
     content: "";
     display: block;
     width: 70%;
@@ -398,14 +444,21 @@ but they are significant and offer a wide range of expression. */
     transition-timing-function: var(--linear-bounce);
   }
       
-  /* The lack of a space between & and :hover matters here! */
+  /* The lack of a space between & and :hover matters here! 
+  The equivalent selector here is: .box-11:hover */
   &:hover {
     background-color: black;
+    
+    /* The equivalent selector here is: .box-11:hover::before 
+    TODO: notice that :hover comes earlier. This means that 
+    hovering over the parent (.box-11) triggers the changes 
+    in the chile element (::before, a pseudo element in this case!) */
     &::before {
       rotate: 45deg;
       top: 42.5%;
       background-color: white;
     }
+
     &::after {
       rotate: -45deg;
       top: 42.5%;
@@ -644,7 +697,10 @@ So for this example I created three child divs to animate */
 
   /* Hide the input! */
   & input {
-    display: none;
+    /* TODO: comment the line below. Notice that clicking the 
+    label also activates the checkbox. This is why it works 
+    when the checkbox is hidden. */
+    /* display: none; */
   }
 
   /* Style the label as the background */
@@ -706,6 +762,9 @@ So for this example I created three child divs to animate */
 /* *********************** */
 /*        Example 16       */
 /* *********************** */
+
+/* I ran out of ideas. TODO: improve this example! */
+
 .box-16 {
   width: 100px;
   height: 100px;
@@ -742,8 +801,6 @@ So for this example I created three child divs to animate */
     }
   }
 }
-
-
 
   </style>
 </head>
